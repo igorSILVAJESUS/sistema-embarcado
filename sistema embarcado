@@ -1,0 +1,33 @@
+import random
+import time
+
+class SistemaAirbag:
+    def __init__(self):
+        self.limiar_impacto = 50
+        self.tempo_resposta = 0.3
+        self.airbag_acionado = False
+    
+    def detectar_impacto(self):
+        aceleracao = random.randint(0, 100)
+        print(f"Aceleração detectada: {aceleracao} m/s²")
+        if aceleracao >= self.limiar_impacto:
+            return True
+        return False
+    
+    def acionar_airbag(self):
+        self.airbag_acionado = True
+        print("Airbag acionado!")
+    
+    def simular_tempo_resposta(self):
+        time.sleep(self.tempo_resposta)
+    
+    def sistema(self):
+        while True:
+            impacto = self.detectar_impacto()
+            if impacto and not self.airbag_acionado:
+                self.simular_tempo_resposta()
+                self.acionar_airbag()
+            time.sleep(1)
+
+sistema_airbag = SistemaAirbag()
+sistema_airbag.sistema()
